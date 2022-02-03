@@ -1,0 +1,30 @@
+{
+  "license": "MIT",
+  "is-rho-project": "true",
+  "devDependencies": {
+    "ava": "^4.0.1",
+    "chalk": "^5.0.0",
+    "fs-extra": "^10.0.0",
+    "shadow-cljs": "^2.16.12",
+    "ws": "^8.4.2"
+  },
+  "dependencies": {
+  },
+  "author": "ρ™ - RTN",
+  "name": "Scramble",
+  "main": "index.js",
+  "keywords": [],
+  "version": "0.0.1",
+  "description": "Flexiana Task",
+  "scripts": {
+    "target-web-csr[expo]": "cd dst/js/frontend/expo/Scramble && npx expo start --web",
+    "cljs-watch-expo": "npx shadow-cljs watch expo-app",
+    "cljs-release-expo": "touch dst/js/frontend/expo/Scramble/compiled-app/oi.txt &&  rm dst/js/frontend/expo/Scramble/compiled-app/* && npx shadow-cljs release expo-app",
+    "cljs-release-api": "npx shadow-cljs release nextjs-api",
+    "target-nextjs[dev]": "cd dst/js/backend/nextjs/scramble && npx next dev",
+    "build-web-csr[expo]-to-nextjs": "cd dst/js/frontend/expo/Scramble && npx expo build:web --no-pwa && cd ../../../../.. && cp -r dst/js/frontend/expo/Scramble/web-build/* dst/js/backend/nextjs/scramble/public && rm -r dst/js/frontend/expo/Scramble/web-build",
+    "deploy-web-csr[expo]-to-vercel": "npm run cljs-release-expo && npm run build-web-csr[expo]-to-nextjs && cd dst/js/backend/nextjs/scramble && npx vercel --prod",
+    "cljs-release-test": "npx shadow-cljs release scramble-test",
+    "test": "npx ava test/avaRunner.js"
+  }
+}

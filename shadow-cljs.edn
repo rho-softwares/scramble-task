@@ -1,0 +1,37 @@
+{
+  :source-paths
+    ["src/xfn-cljs/cljs"
+     "src/cljs"]
+
+  :dependencies
+    [[reagent "1.1.0"]
+     [re-frame "0.12.0"]
+     [appliedscience/js-interop "0.2.5"]]
+
+  :nrepl {:port 3333 :middleware []}
+  :builds
+  {:expo-app {
+      :init-fn    xFrameNative.coreExpo/init_expo
+      :target     :react-native
+      :runtime    :react-native
+      :js-options {:js-provider :closure ; :require"
+                   :js-package-dirs
+                   ["dst/js/frontend/expo/Scramble/node_modules"]}
+      :output-dir "dst/js/frontend/expo/Scramble/compiled-app"
+      :devtools {:autoload true
+                 :preloads [shadow.expo.keep-awake]}
+      :compiler-options
+      { :optimizations      :advanced
+        :install-deps       true
+         :output-feature-set :es-next
+         :infer-externs      :auto}}
+
+   :nextjs-api {
+     :output-to "dst/js/backend/nextjs/scramble/pages/api/new-api.js"
+      :target     :node-library
+      :exports-var main.api/handler}
+
+    :scramble-test {
+     :output-to "test/scramblefn.js"
+      :target     :node-library
+      :exports-var main.scramble/scramble?}}}

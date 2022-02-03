@@ -1,0 +1,32 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+
+.shadow-cljs/
+
+/.next/
+
+# vercel
+.vercel
+
+# Expo
+.expo/
+
+# OSX
+#
+.DS_Store
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+
+# CocoaPods
+/ios/Pods/
+
+
